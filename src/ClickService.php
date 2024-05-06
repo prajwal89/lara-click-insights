@@ -15,7 +15,7 @@ class ClickService
             $clickAble = $this->resolveClickAble($clickableString);
 
             if (empty($clickAble)) {
-                Log::info('Not able to resolve clickable: '.$clickableString);
+                Log::info('Not able to resolve clickable: ' . $clickableString);
 
                 return;
             }
@@ -46,15 +46,18 @@ class ClickService
         ])->increment('clicks');
     }
 
+    // resolve string like User:322  or 'App\\Models\\User:23'
     public function resolveClickAble(string $clickAbleString): ?Model
     {
         if (str_contains($clickAbleString, ':')) {
-            // resolve string like User:322  or 'App\\Models\\User:23'
+
+            if (!config('lara-click-insights.use_short_model_names')) {
+                $clickAbleModel = 'App\\Models\\' . $clickAbleString;
+            }
+
             [$clickAbleModel, $clickAbleId] = explode(':', trim($clickAbleString));
 
-            // $clickAbleModel = 'App\\Models\\' . $clickAbleModel;
-
-            if (! class_exists($clickAbleModel)) {
+            if (!class_exists($clickAbleModel)) {
                 return null;
             }
 

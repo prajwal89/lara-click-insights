@@ -1,5 +1,5 @@
 <?php
 
 return [
-    // 'use_short_model_names' => true,
+    'use_short_model_names' => true,
 ];

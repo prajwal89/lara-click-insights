@@ -12,7 +12,13 @@ trait ImpressionTrackable
 {
     public function trackingAttribute()
     {
-        $parts = [get_class($this), $this->getKey()];
+        if (!config('lara-click-insights.use_short_model_names')) {
+            $modelClassName = get_class($this);
+        } else {
+            $modelClassName = str_replace('App\\Models\\', '', get_class($this));
+        }
+
+        $parts = [$modelClassName, $this->getKey()];
 
         $clickableDataAttribute = sprintf('data-clickable="%s:%s"', ...$parts);
 
