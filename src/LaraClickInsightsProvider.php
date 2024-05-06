@@ -12,22 +12,20 @@ class LaraClickInsightsProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
+        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
 
         $this->publishes([
-            __DIR__ . '/../config/lara-click-insights.php' => config_path('lara-click-insights.php'),
+            __DIR__.'/../config/lara-click-insights.php' => config_path('lara-click-insights.php'),
         ]);
 
-        // https://darkghosthunter.medium.com/laravel-packages-load-or-publish-migrations-119db770c870
-        // $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
         // publish migrations files to apps /database/migrations
-        $this->registerMigrations(__DIR__ . '/../database');
+        $this->registerMigrations(__DIR__.'/../database');
 
         $this->publishes([
-            __DIR__ . '/../public' => public_path('vendor/prajwal89/lara-click-insights'),
+            __DIR__.'/../public' => public_path('vendor/prajwal89/lara-click-insights'),
         ], 'public');
 
-        // todo what if user did not publish the assets 
+        // todo what if user did not publish the assets
         Blade::directive('loadLaraClickInsightsJs', function () {
             return "<?php echo '<script src=\"' . asset('/vendor/prajwal89/lara-click-insights/track-impressions.js') . '\" defer></script>'; ?>";
         });
@@ -35,6 +33,6 @@ class LaraClickInsightsProvider extends ServiceProvider
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__ . '/../config/lara-click-insights.php', 'lara-click-insights');
+        $this->mergeConfigFrom(__DIR__.'/../config/lara-click-insights.php', 'lara-click-insights');
     }
 }

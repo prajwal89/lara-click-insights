@@ -4,7 +4,6 @@ namespace Prajwal89\LaraClickInsights\Controllers;
 
 use Illuminate\Http\Request;
 use Prajwal89\LaraClickInsights\ClickService;
-use Prajwal89\LaraClickInsights\Requests\ClickableFormDataRequest;
 use Prajwal89\LaraClickInsights\Traits\ApiResponser;
 
 class TrackImpressionsController
@@ -24,7 +23,7 @@ class TrackImpressionsController
 
         $this->clickService->recordImpressions($validatedData['clickables']);
 
-        if (!empty($validatedData['clicked_on'])) {
+        if (! empty($validatedData['clicked_on'])) {
             $this->clickService->recordClick($validatedData['clicked_on'], session()->getId());
         }
 

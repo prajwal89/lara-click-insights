@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Impression extends Model
 {
-    protected $table = "impressions";
-    
+    protected $table = 'impressions';
+
     public $timestamps = false;
 
     protected $fillable = [
@@ -18,7 +18,7 @@ class Impression extends Model
         'date',
     ];
 
-    protected  $casts = [
+    protected $casts = [
         'date' => 'date',
     ];
 

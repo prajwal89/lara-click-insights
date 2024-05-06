@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Relations\MorphMany;
 use Prajwal89\LaraClickInsights\Models\Impression;
 
 // todo add helper methods
-// average ctr 
+// average ctr
 // average ctr for time frame
 trait ImpressionTrackable
 {

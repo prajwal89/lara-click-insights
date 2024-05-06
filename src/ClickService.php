@@ -3,11 +3,8 @@
 namespace Prajwal89\LaraClickInsights;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Route;
 
 class ClickService
 {
@@ -18,7 +15,7 @@ class ClickService
             $clickAble = $this->resolveClickAble($clickableString);
 
             if (empty($clickAble)) {
-                Log::info('Not able to resolve clickable: ' . $clickableString);
+                Log::info('Not able to resolve clickable: '.$clickableString);
 
                 return;
             }
@@ -57,7 +54,7 @@ class ClickService
 
             // $clickAbleModel = 'App\\Models\\' . $clickAbleModel;
 
-            if (!class_exists($clickAbleModel)) {
+            if (! class_exists($clickAbleModel)) {
                 return null;
             }
 
