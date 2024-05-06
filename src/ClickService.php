@@ -51,17 +51,17 @@ class ClickService
     {
         if (str_contains($clickAbleString, ':')) {
 
-            if (!config('lara-click-insights.use_short_model_names')) {
-                $clickAbleModel = 'App\\Models\\' . $clickAbleString;
+            [$clickableModel, $clickableId] = explode(':', trim($clickAbleString));
+
+            if (config('lara-click-insights.use_short_model_names')) {
+                $clickableModel = 'App\\Models\\' . $clickableModel;
             }
 
-            [$clickAbleModel, $clickAbleId] = explode(':', trim($clickAbleString));
-
-            if (!class_exists($clickAbleModel)) {
+            if (!class_exists($clickableModel)) {
                 return null;
             }
 
-            return $clickAbleModel::findOrFail($clickAbleId);
+            return $clickableModel::findOrFail($clickableId);
         }
 
         return null;

@@ -3,6 +3,7 @@
 namespace Prajwal89\LaraClickInsights\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
+use Illuminate\Support\Facades\Crypt;
 use Prajwal89\LaraClickInsights\Models\Impression;
 
 // todo add helper methods
@@ -20,9 +21,11 @@ trait ImpressionTrackable
 
         $parts = [$modelClassName, $this->getKey()];
 
-        $clickableDataAttribute = sprintf('data-clickable="%s:%s"', ...$parts);
+        $value = sprintf('%s:%s', ...$parts);
 
-        return $clickableDataAttribute;
+        $attribute = 'data-clickable="' . $value . '"';
+
+        return $attribute;
     }
 
     public function impressions(): MorphMany
