@@ -49,21 +49,20 @@ class ClickService
     // resolve string like User:322  or 'App\\Models\\User:23'
     public function resolveClickAble(string $clickAbleString): ?Model
     {
-        if (str_contains($clickAbleString, ':')) {
-
-            [$clickableModel, $clickableId] = explode(':', trim($clickAbleString));
-
-            if (config('lara-click-insights.use_short_model_names')) {
-                $clickableModel = 'App\\Models\\' . $clickableModel;
-            }
-
-            if (!class_exists($clickableModel)) {
-                return null;
-            }
-
-            return $clickableModel::findOrFail($clickableId);
+        if (!str_contains($clickAbleString, ':')) {
+            return null;
         }
 
-        return null;
+        [$clickableModel, $clickableId] = explode(':', trim($clickAbleString));
+
+        if (config('lara-click-insights.use_short_model_names')) {
+            $clickableModel = 'App\\Models\\' . $clickableModel;
+        }
+
+        if (!class_exists($clickableModel)) {
+            return null;
+        }
+
+        return $clickableModel::findOrFail($clickableId);
     }
 }
