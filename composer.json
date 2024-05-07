@@ -1,5 +1,6 @@
 {
     "name": "prajwal89/lara-click-insights",
+    "description": "Track impressions and clicks",
     "keywords": [
         "laravel",
         "track",
@@ -20,6 +21,13 @@
     "autoload": {
         "psr-4": {
             "Prajwal89\\LaraClickInsights\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Prajwal89\\LaraClickInsights\\LaraClickInsightsProvider"
+            ]
         }
     }
 }
