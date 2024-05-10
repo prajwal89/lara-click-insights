@@ -11,7 +11,7 @@ use Prajwal89\LaraClickInsights\Models\Impression;
 // average ctr for time frame
 trait ImpressionTrackable
 {
-    public function trackingAttribute()
+    public function trackingAttribute(string $variation = 'default')
     {
         if (!config('lara-click-insights.use_short_model_names')) {
             $modelClassName = get_class($this);
@@ -19,9 +19,9 @@ trait ImpressionTrackable
             $modelClassName = str_replace('App\\Models\\', '', get_class($this));
         }
 
-        $parts = [$modelClassName, $this->getKey()];
+        $parts = [$modelClassName, $this->getKey(), $variation];
 
-        $value = sprintf('%s:%s', ...$parts);
+        $value = sprintf('%s:%s:%s', ...$parts);
 
         $attribute = 'data-clickable="' . $value . '"';
 

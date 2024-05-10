@@ -20,8 +20,11 @@ class ClickService
                 return;
             }
 
+            $variation = last(explode(':', $clickableString));
+
             $clickAble->impressions()->firstOrCreate([
                 'date' => now()->toDateString(),
+                'variation' => $variation,
             ])->increment('impressions');
 
             return $clickAble;
@@ -31,6 +34,8 @@ class ClickService
     public function recordClick(string $clickableString, string $sessionId)
     {
         $clickAble = $this->resolveClickAble($clickableString);
+        
+        $variation = last(explode(':', $clickableString));
 
         // // * Do not record duplicate clicks if happened before 6 hours
         // $cacheKey = $sessionId . '-clicked-' . $clickableString;
@@ -43,6 +48,7 @@ class ClickService
 
         $clickAble->impressions()->firstOrCreate([
             'date' => now()->toDateString(),
+            'variation' => $variation,
         ])->increment('clicks');
     }
 

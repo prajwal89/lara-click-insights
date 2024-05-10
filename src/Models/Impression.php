@@ -15,6 +15,7 @@ class Impression extends Model
         'impressionable_id',
         'impressions',
         'clicks',
+        'variation',
         'date',
     ];
 
