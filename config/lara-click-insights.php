@@ -8,5 +8,5 @@ return [
      * This will dispatch `Prajwal89\LaraClickInsights\Jobs\RecordEventJob`.
      */
 
-    'queue_jobs' => true,
+    'queue_jobs' => false,
 ];
