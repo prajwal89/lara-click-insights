@@ -27,7 +27,7 @@ class LaraClickInsightsProvider extends ServiceProvider
 
         // todo what if user did not publish the assets
         Blade::directive('loadLaraClickInsightsJs', function () {
-            return "<?php echo '<script src=\"' . asset('/vendor/prajwal89/lara-click-insights/track-impressions.js') . '\" defer></script>'; ?>";
+            return "<?php echo '<script src=\"' . asset('/vendor/prajwal89/lara-click-insights/track-events.js') . '\" defer></script>'; ?>";
         });
     }
 
