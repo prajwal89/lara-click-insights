@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Log;
 
 class TrackEventService
 {
-    public function recordImpressions(array $clickableStrings)
+    public function recordImpressions(array $clickableStrings): void
     {
         collect($clickableStrings)->map(function ($clickableString) {
 
@@ -20,39 +20,43 @@ class TrackEventService
                 return;
             }
 
-            $variation = last(explode(':', $clickableString));
-
             $clickAble->impressions()->firstOrCreate([
                 'date' => now()->toDateString(),
-                'variation' => $variation,
+                'variation' => last(explode(':', $clickableString)),
             ])->increment('impressions');
 
             return $clickAble;
         });
     }
 
-    public function recordClick(string $clickableString, string $sessionId)
+    public function recordClick(string $clickableString, string $sessionId): void
     {
         $clickAble = $this->resolveClickAble($clickableString);
-        
-        $variation = last(explode(':', $clickableString));
 
-        // // * Do not record duplicate clicks if happened before 6 hours
-        // $cacheKey = $sessionId . '-clicked-' . $clickableString;
+        if (config('lara-click-insights.avoid_tracking_quick_clicks')) {
+            $cacheKey = $sessionId . '-clicked-' . $clickableString;
 
-        // if (Cache::has($cacheKey)) {
-        //     return false;
-        // } else {
-        //     Cache::put($cacheKey, 1, now()->addHours(6));
-        // }
+            if (Cache::has($cacheKey)) {
+                dd('skipped');
+                // user has clicked on this before min_gap_between_clicks_in_sec
+                return;
+            } else {
+                Cache::put($cacheKey, 1, now()->addSecond(config('lara-click-insights.min_gap_between_clicks_in_sec')));
+            }
+        }
 
         $clickAble->impressions()->firstOrCreate([
             'date' => now()->toDateString(),
-            'variation' => $variation,
+            'variation' => last(explode(':', $clickableString)),
         ])->increment('clicks');
     }
 
-    // resolve string like User:322  or 'App\\Models\\User:23'
+    /**
+     * resolve string like User:322 or 'App\\Models\\User:23' to model
+     *
+     * @param string $clickAbleString
+     * @return Model|null
+     */
     public function resolveClickAble(string $clickAbleString): ?Model
     {
         if (!str_contains($clickAbleString, ':')) {
