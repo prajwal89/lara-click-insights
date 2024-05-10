@@ -3,15 +3,15 @@
 namespace Prajwal89\LaraClickInsights\Controllers;
 
 use Illuminate\Http\Request;
-use Prajwal89\LaraClickInsights\ClickService;
+use Prajwal89\LaraClickInsights\TrackEventService;
 use Prajwal89\LaraClickInsights\Jobs\RecordEventJob;
 use Prajwal89\LaraClickInsights\Traits\ApiResponser;
 
-class TrackImpressionsController
+class TrackEventsController
 {
     use ApiResponser;
 
-    public function __construct(public ClickService $clickService)
+    public function __construct(public TrackEventService $trackEventService)
     {
     }
 
@@ -22,10 +22,10 @@ class TrackImpressionsController
         if (config('lara-click-insights.queue_jobs')) {
             dispatch(new RecordEventJob(requestData: $validatedData, sessionId: session()->getId()));
         } else {
-            $this->clickService->recordImpressions($validatedData['clickables']);
+            $this->trackEventService->recordImpressions($validatedData['clickables']);
 
             if (!empty($validatedData['clicked_on'])) {
-                $this->clickService->recordClick($validatedData['clicked_on'], session()->getId());
+                $this->trackEventService->recordClick($validatedData['clicked_on'], session()->getId());
             }
         }
 

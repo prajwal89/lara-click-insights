@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 
-class ClickService
+class TrackEventService
 {
     public function recordImpressions(array $clickableStrings)
     {
