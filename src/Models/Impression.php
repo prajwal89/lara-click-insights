@@ -18,6 +18,8 @@ class Impression extends Model
     ];
 
     protected $casts = [
+        'impressions' => 'integer',
+        'clicks' => 'integer',
         'date' => 'date',
     ];
 
