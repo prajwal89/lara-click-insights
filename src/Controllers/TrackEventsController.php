@@ -3,8 +3,8 @@
 namespace Prajwal89\LaraClickInsights\Controllers;
 
 use Illuminate\Http\Request;
-use Prajwal89\LaraClickInsights\TrackEventService;
 use Prajwal89\LaraClickInsights\Jobs\RecordEventJob;
+use Prajwal89\LaraClickInsights\TrackEventService;
 use Prajwal89\LaraClickInsights\Traits\ApiResponser;
 
 class TrackEventsController
@@ -24,7 +24,7 @@ class TrackEventsController
         } else {
             $this->trackEventService->recordImpressions($validatedData['clickables']);
 
-            if (!empty($validatedData['clicked_on'])) {
+            if (! empty($validatedData['clicked_on'])) {
                 $this->trackEventService->recordClick($validatedData['clicked_on'], session()->getId());
             }
         }

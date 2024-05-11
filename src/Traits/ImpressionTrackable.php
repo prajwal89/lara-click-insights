@@ -3,7 +3,6 @@
 namespace Prajwal89\LaraClickInsights\Traits;
 
 use Illuminate\Database\Eloquent\Relations\MorphMany;
-use Illuminate\Support\Facades\Crypt;
 use Prajwal89\LaraClickInsights\Models\Impression;
 
 // todo add helper methods
@@ -11,9 +10,9 @@ use Prajwal89\LaraClickInsights\Models\Impression;
 // average ctr for time frame
 trait ImpressionTrackable
 {
-    public function trackingAttribute(string $variation = 'default')
+    public function trackingAttribute(string $variation = 'default'): string
     {
-        if (!config('lara-click-insights.use_short_model_names')) {
+        if (! config('lara-click-insights.use_short_model_names')) {
             $modelClassName = get_class($this);
         } else {
             $modelClassName = str_replace('App\\Models\\', '', get_class($this));
@@ -23,7 +22,7 @@ trait ImpressionTrackable
 
         $value = sprintf('%s:%s:%s', ...$parts);
 
-        $attribute = 'data-clickable="' . $value . '"';
+        $attribute = 'data-clickable="'.$value.'"';
 
         return $attribute;
     }

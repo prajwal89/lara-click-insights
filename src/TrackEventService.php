@@ -15,7 +15,7 @@ class TrackEventService
             $clickAble = $this->resolveClickAble($clickableString);
 
             if (empty($clickAble)) {
-                Log::info('Not able to resolve clickable: ' . $clickableString);
+                Log::info('Not able to resolve clickable: '.$clickableString);
 
                 return;
             }
@@ -34,10 +34,11 @@ class TrackEventService
         $clickAble = $this->resolveClickAble($clickableString);
 
         if (config('lara-click-insights.avoid_tracking_quick_clicks')) {
-            $cacheKey = $sessionId . '-clicked-' . $clickableString;
+            $cacheKey = $sessionId.'-clicked-'.$clickableString;
 
             if (Cache::has($cacheKey)) {
                 dd('skipped');
+
                 // user has clicked on this before min_gap_between_clicks_in_sec
                 return;
             } else {
@@ -53,23 +54,20 @@ class TrackEventService
 
     /**
      * resolve string like User:322 or 'App\\Models\\User:23' to model
-     *
-     * @param string $clickAbleString
-     * @return Model|null
      */
     public function resolveClickAble(string $clickAbleString): ?Model
     {
-        if (!str_contains($clickAbleString, ':')) {
+        if (! str_contains($clickAbleString, ':')) {
             return null;
         }
 
         [$clickableModel, $clickableId] = explode(':', trim($clickAbleString));
 
         if (config('lara-click-insights.use_short_model_names')) {
-            $clickableModel = 'App\\Models\\' . $clickableModel;
+            $clickableModel = 'App\\Models\\'.$clickableModel;
         }
 
-        if (!class_exists($clickableModel)) {
+        if (! class_exists($clickableModel)) {
             return null;
         }
 
