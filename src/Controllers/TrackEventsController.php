@@ -4,6 +4,7 @@ namespace Prajwal89\LaraClickInsights\Controllers;
 
 use Illuminate\Http\Request;
 use Prajwal89\LaraClickInsights\Jobs\RecordEventJob;
+use Prajwal89\LaraClickInsights\Requests\ClickableFormDataRequest;
 use Prajwal89\LaraClickInsights\TrackEventService;
 use Prajwal89\LaraClickInsights\Traits\ApiResponser;
 
@@ -15,7 +16,7 @@ class TrackEventsController
     {
     }
 
-    public function __invoke(Request $request)
+    public function __invoke(ClickableFormDataRequest $request)
     {
         $validatedData = $request->all();
 

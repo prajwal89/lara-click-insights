@@ -14,8 +14,8 @@ class ClickableFormDataRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'clickables' => 'required|array',
-            'clickables.*' => 'required|string',
+            'clickables' => 'array',
+            'clickables.*' => 'string',
             'clicked_on' => 'sometimes|nullable|string',
         ];
     }
