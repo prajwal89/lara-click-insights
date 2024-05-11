@@ -60,6 +60,7 @@ return [
 
     /**
      * send data to server on every x seconds
+     * request will be made if only their are new impressions to track
      */
     'polling_delay_in_sec' => 3,
 

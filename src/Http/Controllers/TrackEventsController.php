@@ -1,10 +1,10 @@
 <?php
 
-namespace Prajwal89\LaraClickInsights\Controllers;
+namespace Prajwal89\LaraClickInsights\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Prajwal89\LaraClickInsights\Http\Requests\ClickableFormDataRequest;
 use Prajwal89\LaraClickInsights\Jobs\RecordEventJob;
-use Prajwal89\LaraClickInsights\Requests\ClickableFormDataRequest;
 use Prajwal89\LaraClickInsights\TrackEventService;
 use Prajwal89\LaraClickInsights\Traits\ApiResponser;
 

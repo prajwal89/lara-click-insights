@@ -1,6 +1,6 @@
 <?php
 
-namespace Prajwal89\LaraClickInsights\Requests;
+namespace Prajwal89\LaraClickInsights\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
