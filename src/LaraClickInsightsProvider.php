@@ -12,27 +12,30 @@ class LaraClickInsightsProvider extends ServiceProvider
 
     public function boot(): void
     {
-        $this->loadRoutesFrom(__DIR__.'/routes/web.php');
+        $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         $this->publishes([
-            __DIR__.'/../config/lara-click-insights.php' => config_path('lara-click-insights.php'),
-        ]);
+            __DIR__ . '/../config/lara-click-insights.php' => config_path('lara-click-insights.php'),
+        ], 'lara-click-insights-config');
 
         // publish migrations files to apps /database/migrations
-        $this->registerMigrations(__DIR__.'/../database');
+        $this->registerMigrations(__DIR__ . '/../database');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('vendor/prajwal89/lara-click-insights'),
-        ], 'public');
+            __DIR__ . '/../public' => public_path('vendor/prajwal89/lara-click-insights'),
+        ], 'lara-click-insights-assets');
 
-        // todo what if user did not publish the assets
-        Blade::directive('loadLaraClickInsightsJs', function () {
-            return "<?php echo '<script src=\"' . asset('/vendor/prajwal89/lara-click-insights/track-events.js') . '\" defer></script>'; ?>";
+        Blade::directive('LaraClickInsightsJs', function () {
+            $configs = json_encode([
+                'polling_delay_in_sec' => config('lara-click-insights.polling_delay_in_sec'),
+                'intersection_threshold' => config('lara-click-insights.intersection_threshold'),
+            ]);
+            return "<script src=\"{{ asset('/vendor/prajwal89/lara-click-insights/track-events.js') }}\" data-config='" . $configs . ".' defer></script>";
         });
     }
 
     public function register(): void
     {
-        $this->mergeConfigFrom(__DIR__.'/../config/lara-click-insights.php', 'lara-click-insights');
+        $this->mergeConfigFrom(__DIR__ . '/../config/lara-click-insights.php', 'lara-click-insights');
     }
 }

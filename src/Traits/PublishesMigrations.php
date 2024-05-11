@@ -21,7 +21,7 @@ trait PublishesMigrations
                 }
             };
 
-            $this->publishes(iterator_to_array($generator($directory)), 'migrations');
+            $this->publishes(iterator_to_array($generator($directory)), 'lara-click-insights-migrations');
         }
     }
 }
