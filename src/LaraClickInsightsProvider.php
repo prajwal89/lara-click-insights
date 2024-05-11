@@ -27,6 +27,7 @@ class LaraClickInsightsProvider extends ServiceProvider
 
         Blade::directive('LaraClickInsightsJs', function () {
             $configs = json_encode([
+                'endpoint' => config('lara-click-insights.endpoint'),
                 'polling_delay_in_sec' => config('lara-click-insights.polling_delay_in_sec'),
                 'intersection_threshold' => config('lara-click-insights.intersection_threshold'),
             ]);

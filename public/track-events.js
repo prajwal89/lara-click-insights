@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         // todo this should be dynamic as user can change the route path
-        fetch('/lara-click-insights', {
+        fetch(config.endpoint, {
             method: 'POST',
             body: JSON.stringify({
                 clickables: clickAbles
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
         [elementToSendForImpressions, clickAbles] = getClickableForTrackingImpressions();
 
         // todo add time out of 500ms
-        fetch('/lara-click-insights', {
+        fetch(config.endpoint, {
             method: 'POST',
             body: JSON.stringify({
                 clickables: clickAbles,
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return findParentLinkNode(node.parentNode); // Recursively check the parent node
     }
 
-    setInterval(recordImpressions, config.polling_delay_in_sec*1000);
+    setInterval(recordImpressions, config.polling_delay_in_sec * 1000);
 
     //* observe and listen events on newly added clickables after FCP
     window.syncNewlyAddedClickAbles = function () {

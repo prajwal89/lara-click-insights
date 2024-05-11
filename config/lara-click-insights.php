@@ -1,6 +1,12 @@
 <?php
 
 return [
+
+    /**
+     * event data will be sent here
+     */
+    'endpoint' => '/api/lara-click-insights',
+
     /*
     |--------------------------------------------------------------------------
     | Use Short Model Names
