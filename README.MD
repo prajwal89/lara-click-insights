@@ -96,4 +96,4 @@ You can modify these options according to your needs. If you've published the co
 
 ## License
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+The MIT License (MIT). Please see [License File](LICENSE.MD) for more information.
