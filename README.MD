@@ -36,11 +36,12 @@ php artisan vendor:publish
 
 When prompted, select Prajwal89\LaraClickInsights\LaraClickInsightsProvider.
 
-Add @LaraClickInsightsJs directive in `<head>` tag
+In your HTML `<head>` tag, add the following directive and meta tag:
 
 ```html
 <html>
   <head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     ...
     @LaraClickInsightsJs
   </head>
@@ -80,6 +81,18 @@ The trait contains an abstract method `trackingAttribute()` that you must implem
 this will add data attribute for identifying the clickable link like `data-clickable="yourEloquentModels:23:default"`
 
 do not forget to use `{!!  !!}`
+
+<!-- ## Configuration
+
+Below is the default configuration file contents for config/lara-click-insights.php:
+
+```php
+return [
+    // Configuration options...
+];
+```
+
+You can modify these options according to your needs. If you've published the configuration file, you can find it in your Laravel project's config directory. -->
 
 ## License
 
