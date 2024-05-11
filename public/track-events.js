@@ -3,10 +3,10 @@
 // ! but this may lead to unexpected behavior like what if we already have event listener on that element  
 
 document.addEventListener('DOMContentLoaded', function () {
-    const config = {
-        polling_delay_in_ms: 3000,
-        intersection_threshold: 0.5
-    }
+
+    let currentScript = document.getElementById('lara-click-insights')
+
+    const config = JSON.parse(currentScript.dataset.config)
 
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
@@ -153,7 +153,7 @@ document.addEventListener('DOMContentLoaded', function () {
         return findParentLinkNode(node.parentNode); // Recursively check the parent node
     }
 
-    setInterval(recordImpressions, config.polling_delay_in_ms);
+    setInterval(recordImpressions, config.polling_delay_in_sec*1000);
 
     //* observe and listen events on newly added clickables after FCP
     window.syncNewlyAddedClickAbles = function () {

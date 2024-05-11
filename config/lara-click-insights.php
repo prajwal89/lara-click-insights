@@ -46,4 +46,15 @@ return [
     |
     */
     'min_gap_between_clicks_in_sec' => 60 * 60 * 4,
+
+    /**
+     * send data to server on every x seconds
+     */
+    'polling_delay_in_sec' => 3,
+
+    /**
+     * value between 0 to 1 how much percentage of clickable element should be in users viewport to be taken as
+     * impression
+     */
+    'intersection_threshold' => 0.5,
 ];

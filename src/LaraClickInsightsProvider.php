@@ -31,7 +31,7 @@ class LaraClickInsightsProvider extends ServiceProvider
                 'intersection_threshold' => config('lara-click-insights.intersection_threshold'),
             ]);
 
-            return "<script src=\"{{ asset('/vendor/prajwal89/lara-click-insights/track-events.js') }}\" data-config='".$configs.".' defer></script>";
+            return "<script src=\"{{ asset('/vendor/prajwal89/lara-click-insights/track-events.js') }}\" id='lara-click-insights' data-config='".$configs."' defer></script>";
         });
     }
 
