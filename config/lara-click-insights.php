@@ -6,6 +6,11 @@ return [
      * event data will be sent here
      */
     'endpoint' => '/api/lara-click-insights',
+    
+    /**
+     * impressions table name
+     */
+    'table' => 'impressions',
 
     /*
     |--------------------------------------------------------------------------

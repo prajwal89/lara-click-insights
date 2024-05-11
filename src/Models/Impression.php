@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Impression extends Model
 {
-    protected $table = 'impressions';
-
     public $timestamps = false;
 
     protected $fillable = [
@@ -22,6 +20,11 @@ class Impression extends Model
     protected $casts = [
         'date' => 'date',
     ];
+
+    public function getTable()
+    {
+        return config('lara-click-insights.table');
+    }
 
     public function impressionable()
     {
