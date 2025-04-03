@@ -6,7 +6,7 @@ return [
      * event data will be sent here
      */
     'endpoint' => '/api/lara-click-insights',
-    
+
     /**
      * impressions table name
      */
@@ -69,4 +69,11 @@ return [
      * impression
      */
     'intersection_threshold' => 0.5,
+
+    /**
+     * FQN of middleware
+     * sometimes you don't want to track impressions and clicks of admin or
+     * some users you can do this using this 
+     */
+    'middleware' => null,
 ];
