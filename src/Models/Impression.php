@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Prajwal89\LaraClickInsights\Models;
 
 use Illuminate\Database\Eloquent\Model;

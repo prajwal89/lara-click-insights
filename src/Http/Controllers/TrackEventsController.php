@@ -1,9 +1,10 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Prajwal89\LaraClickInsights\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use Prajwal89\LaraClickInsights\Http\Requests\ClickableFormDataRequest;
 use Prajwal89\LaraClickInsights\Jobs\RecordEventJob;
 use Prajwal89\LaraClickInsights\TrackEventService;
@@ -34,7 +35,7 @@ class TrackEventsController extends Controller
         } else {
             $this->trackEventService->recordImpressions($validatedData['clickables']);
 
-            if (! empty($validatedData['clicked_on'])) {
+            if (!empty($validatedData['clicked_on'])) {
                 $this->trackEventService->recordClick($validatedData['clicked_on'], session()->getId());
             }
         }

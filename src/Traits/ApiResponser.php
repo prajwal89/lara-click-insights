@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Prajwal89\LaraClickInsights\Traits;
 
 use Illuminate\Http\JsonResponse;

@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Prajwal89\LaraClickInsights\Jobs;
 
 use Illuminate\Bus\Queueable;
@@ -26,7 +28,7 @@ class RecordEventJob implements ShouldQueue
     {
         $this->clickService->recordImpressions($this->requestData['clickables']);
 
-        if (! empty($this->requestData['clicked_on'])) {
+        if (!empty($this->requestData['clicked_on'])) {
             $this->clickService->recordClick($this->requestData['clicked_on'], $this->sessionId);
         }
     }

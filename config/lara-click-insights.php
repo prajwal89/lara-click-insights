@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 return [
 
     /**
@@ -73,7 +75,7 @@ return [
     /**
      * FQN of middleware
      * sometimes you don't want to track impressions and clicks of admin or
-     * some users you can do this using this 
+     * some users you can do this using this
      */
     'middleware' => null,
 ];

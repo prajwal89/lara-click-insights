@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Prajwal89\LaraClickInsights;
 
 use Illuminate\Database\Eloquent\Model;
@@ -57,7 +59,7 @@ class TrackEventService
      */
     public function resolveClickAble(string $clickAbleString): ?Model
     {
-        if (! str_contains($clickAbleString, ':')) {
+        if (!str_contains($clickAbleString, ':')) {
             return null;
         }
 
@@ -67,7 +69,7 @@ class TrackEventService
             $clickableModel = 'App\\Models\\' . $clickableModel;
         }
 
-        if (! class_exists($clickableModel)) {
+        if (!class_exists($clickableModel)) {
             return null;
         }
 
