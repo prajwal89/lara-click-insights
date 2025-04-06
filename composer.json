@@ -29,5 +29,8 @@
                 "Prajwal89\\LaraClickInsights\\LaraClickInsightsProvider"
             ]
         }
+    },
+    "require-dev": {
+        "laravel/pint": "^1.21"
     }
 }
