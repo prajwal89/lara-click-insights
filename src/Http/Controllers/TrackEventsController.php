@@ -35,7 +35,7 @@ class TrackEventsController extends Controller
         } else {
             $this->trackEventService->recordImpressions($validatedData['clickables']);
 
-            if (!empty($validatedData['clicked_on'])) {
+            if (isset($validatedData['clicked_on']) && !empty($validatedData['clicked_on'])) {
                 $this->trackEventService->recordClick($validatedData['clicked_on'], session()->getId());
             }
         }

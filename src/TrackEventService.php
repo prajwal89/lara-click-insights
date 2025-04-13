@@ -17,7 +17,8 @@ class TrackEventService
             $clickAble = $this->resolveClickAble($clickableString);
 
             if (empty($clickAble)) {
-                Log::info('Not able to resolve clickable: ' . $clickableString);
+                // todo log only if user has enabled logging
+                // Log::info('Not able to resolve clickable: ' . $clickableString);
 
                 return;
             }
