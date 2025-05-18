@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Prajwal89\LaraClickInsights\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphTo;
 
 class Impression extends Model
 {
@@ -30,7 +31,7 @@ class Impression extends Model
         return config('lara-click-insights.table');
     }
 
-    public function impressionable()
+    public function impressionable(): MorphTo
     {
         return $this->morphTo();
     }
